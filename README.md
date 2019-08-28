@@ -1,3 +1,3 @@
 # RSWTools
 
-A description of this package.
+Version: 2019.2
