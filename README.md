@@ -1,3 +1,3 @@
 # RSWTools
 
-Version: 2019.2
+Version: 1.0.0
