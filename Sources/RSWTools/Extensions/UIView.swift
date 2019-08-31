@@ -10,6 +10,15 @@ import UIKit
 
 extension UIView {
     
+    public func fadeTransition(_ duration:CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+            CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.fade
+        animation.duration = duration
+        layer.add(animation, forKey: CATransitionType.fade.rawValue)
+    }
+    
     public func applyGradient(colors: [CGColor], locations: [NSNumber], startPoint: CGPoint = CGPoint(x: 0.5, y: 0), endPoint: CGPoint = CGPoint(x: 0.5, y: 1)) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
