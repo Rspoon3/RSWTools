@@ -10,28 +10,28 @@ import Foundation
 
 extension FileManager{
     
-    static var documentsDirectory : URL{
+    public static var documentsDirectory : URL{
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first! as URL
     }
     
-    static var tempDirectory : String{
+    public static var tempDirectory : String{
         return NSTemporaryDirectory()
     }
     
-    static var cachesDirectory : URL{
+    public static var cachesDirectory : URL{
         return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first! as URL
     }
     
-    static func filePathInDocumentsDirecotry(fileName: String)->URL{
+    public static func filePathInDocumentsDirecotry(fileName: String)->URL{
         return FileManager.documentsDirectory.appendingPathComponent(fileName)
     }
     
-    static func fileExistsInDocumentsDirectory(fileName: String)-> Bool{
+    public static func fileExistsInDocumentsDirectory(fileName: String)-> Bool{
         let path = filePathInDocumentsDirecotry(fileName: fileName).path
         return FileManager.default.fileExists(atPath: path)
     }
     
-    static func deleteFileInDocumentsDirectory(fileName: String){
+    public static func deleteFileInDocumentsDirectory(fileName: String){
         let path = filePathInDocumentsDirecotry(fileName: fileName).path
         do {
             try FileManager.default.removeItem(atPath: path)
@@ -41,7 +41,7 @@ extension FileManager{
         }
     }
     
-    static func contentsOfDir(url:URL) -> [String]{
+    public static func contentsOfDir(url:URL) -> [String]{
         do{
             if let paths = try FileManager.default.contentsOfDirectory(atPath: url.path) as [String]?{
                 return paths
@@ -55,7 +55,7 @@ extension FileManager{
         }
     }
     
-    static func clearDocumentsFolder() {
+    public static func clearDocumentsFolder() {
         let fileManager = FileManager.default
         let docsFolderPath = FileManager.documentsDirectory.path
         
