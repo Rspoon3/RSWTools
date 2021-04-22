@@ -20,7 +20,7 @@ public extension Bundle {
             // First will be smallest for the device class, last will be the largest for device class
             let lastIcon = iconFiles.lastObject as? String,
             let icon = UIImage(named: lastIcon) else {
-                return SFSymbol.exclamationMark.uiImage
+            return UIImage(symbol: .exclamationmark)
         }
 
         return icon

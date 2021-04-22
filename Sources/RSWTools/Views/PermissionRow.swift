@@ -22,7 +22,7 @@ public struct PermissionRow: View {
     
     public var body: some View {
         AStack(isVertical: sizeCategory.isAccessibilityCategory){
-            permission.symbol.image
+            Image(symbol: permission.symbol)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: sizeCategory.isAccessibilityCategory ? 50 : 25)

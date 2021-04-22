@@ -50,7 +50,7 @@ public struct SettingsImageButton: View {
 struct SettingsImageButton_Previews: PreviewProvider {
     static var previews: some View {
         Form{
-            SettingsImageButton("Privacy Policy", image: SFSymbol.raisedHand.image, color: .accentColor, size: 20){}
+            SettingsImageButton("Privacy Policy", image: Image(symbol: .handRaisedFill), color: .accentColor, size: 20){}
         }
     }
 }

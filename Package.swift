@@ -12,10 +12,16 @@ let package = Package(
             name: "RSWTools",
             targets: ["RSWTools"]),
     ],
-       targets: [
+    dependencies: [
+        .package(name: "SFSymbols", url: "https://github.com/Rspoon3/SFSymbols.git", from: "1.0.0"),
+    ],
+    targets: [
         .target(
             name: "RSWTools",
-            dependencies: []),
+            dependencies: [
+                "SFSymbols"
+            ]
+        ),
         .testTarget(
             name: "RSWToolsTests",
             dependencies: ["RSWTools"]),

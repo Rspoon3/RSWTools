@@ -10,7 +10,7 @@ import UIKit
 
 public extension String{
     
-    func replacingFirstOccurrenceOf(_ target: String, with replaceString: String) -> String{
+    func replacingFirstOccurrence(of target: String, with replaceString: String) -> String{
         if let range = self.range(of: target) {
             return self.replacingCharacters(in: range, with: replaceString)
         }

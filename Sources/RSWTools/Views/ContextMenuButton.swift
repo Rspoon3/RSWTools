@@ -7,13 +7,15 @@
 //
 
 import SwiftUI
+import SFSymbols
+
 
 public struct ContextMenuButton: View {
-    let title: String
+    let title: LocalizedStringKey
     let symbol: SFSymbol
     let action: () -> Void
     
-    public init(title: String, symbol: SFSymbol, action: @escaping ()->Void){
+    public init(title: LocalizedStringKey, symbol: SFSymbol, action: @escaping ()->Void){
         self.title = title
         self.symbol = symbol
         self.action = action
@@ -23,7 +25,7 @@ public struct ContextMenuButton: View {
         Button(action: {
             self.action()
         }, label: {
-            SFLabel(title, symbol)
+            Label(title, symbol: symbol)
                 .imageScale(.large)
         })
     }

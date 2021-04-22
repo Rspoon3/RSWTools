@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SFSymbols
+
 
 public struct Permission{
     public let title: String

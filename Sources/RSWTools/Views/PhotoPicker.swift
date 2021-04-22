@@ -45,7 +45,7 @@ public struct PhotoPicker: UIViewControllerRepresentable {
                     provider = results.first?.itemProvider,
                   provider.canLoadObject(ofClass: UIImage.self)
             else {
-                fatalError("Something went bad picking the image")
+                return
             }
             
             provider.loadObject(ofClass: UIImage.self) { (image, error) in
