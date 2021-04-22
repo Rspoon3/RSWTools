@@ -10,6 +10,10 @@ import UIKit
 
 
 public extension UIView {
+    struct AnchoredConstraints {
+        public var top, leading, bottom, trailing, width, height: NSLayoutConstraint?
+    }
+
     //MARK: Anchors
     @discardableResult
     func fillSuperview(padding: UIEdgeInsets = .zero) -> AnchoredConstraints {

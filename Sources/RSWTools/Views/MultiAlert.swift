@@ -13,7 +13,7 @@ public enum MultiAlert: Identifiable {
     case nonActionable(title: String, message: String, cancelAction: (()->Void)? = nil)
     case nonActionableError(_ error: Error, completion: (()->Void)? = nil)
     case permissionDenied
-    case singleAction(alert: Alert)
+    case custom(alert: Alert)
     
     public var id: String{
         switch self {
@@ -23,8 +23,8 @@ public enum MultiAlert: Identifiable {
             return "nonActionableError"
         case .permissionDenied:
             return "permissionDenied"
-        case .singleAction:
-            return "singleAction"
+        case .custom:
+            return "custom"
         }
     }
     
@@ -42,7 +42,7 @@ public enum MultiAlert: Identifiable {
             return Alert(title: Text("Permission Denied"),
                          message: Text("This permission is denied. Would you like to change this in the settings app?"),
                          primaryButton: .default(Text("Yes"), action: UIApplication.shared.openSettingsDotApp), secondaryButton: .cancel(Text("No")))
-        case .singleAction(let alert):
+        case .custom(let alert):
             return alert
         }
     }
