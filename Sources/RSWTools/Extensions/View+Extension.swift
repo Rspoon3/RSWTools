@@ -10,6 +10,10 @@ import SwiftUI
 
 
 public extension View{
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
+    }
+    
     func addNavigationWithDismiss() -> some View{
         return self.modifier(NavigationWithDismiss())
     }
