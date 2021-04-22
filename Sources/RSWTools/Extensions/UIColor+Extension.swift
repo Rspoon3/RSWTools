@@ -9,7 +9,8 @@ import UIKit
 
 
 public extension UIColor {
-    
+    static let safari = UIColor(#colorLiteral(red: 0.1193895862, green: 0.706346333, blue: 0.9974301457, alpha: 1))
+
     //Example: static let messageSender = UIColor(hex: "#508392ff")
     //Last two values represent an alpha value
     convenience init(hex: String){
@@ -50,6 +51,15 @@ public extension UIColor {
         let b = CGFloat.random(in: 0...1)
         
         return UIColor(red: r, green: g, blue: b, alpha: alpha)
+    }
+    
+    
+    static func fromData(_ data:Data) -> UIColor {
+        return try! NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: data)!
+    }
+    
+    func toData() -> Data {
+        return try! NSKeyedArchiver.archivedData(withRootObject: self, requiringSecureCoding: false)
     }
     
     //MARK: - Helpers

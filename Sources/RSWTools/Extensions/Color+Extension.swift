@@ -9,7 +9,8 @@ import SwiftUI
 
 
 public extension Color{
-    
+    static let safari = Color(.safari)
+
     init(hex: String) {
         self.init(UIColor(hex: hex))
     }
