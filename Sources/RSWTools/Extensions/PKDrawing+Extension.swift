@@ -10,7 +10,7 @@ import Foundation
 import PencilKit
 
 
-extension PKDrawing {
+public extension PKDrawing {
     var isBlank: Bool {
         return self.bounds == CGRect(origin: CGPoint(x: CGFloat.infinity, y: CGFloat.infinity), size: .zero)
     }
