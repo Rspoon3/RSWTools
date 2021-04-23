@@ -9,7 +9,7 @@
 import SwiftUI
 
 
-struct AStack<Content: View>: View {
+public struct AStack<Content: View>: View {
     let horizontalAlignment: HorizontalAlignment
     let verticalAlignment: VerticalAlignment
     let spacing: CGFloat?
