@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct SettingsMadeBy: View {
+public struct SettingsMadeBy: View {
     let appID: Int
     @State private var showPersonalWebsite = false
     
