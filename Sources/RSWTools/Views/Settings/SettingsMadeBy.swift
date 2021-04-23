@@ -45,7 +45,7 @@ public struct SettingsMadeBy: View {
             .font(.caption)
             .frame(maxWidth: .infinity, alignment: .center)
             .onTapGesture{
-                
+                showPersonalWebsite.toggle()
             }
             .sheet(isPresented: $showPersonalWebsite){
                 SafariView(website: .personal)
