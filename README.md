@@ -8,13 +8,6 @@
 ## About 
 I find myself using a lot of the same extensions and views in each of my projects. It started to become tedious keeping track of which projects I updated these in. By consolidating everything into this package the aim is to reduce time spent managing project files, and more time creating awesome things.
 
-RSWTools is currently used in the following applications:
-
-- [Study Sets](https://testflight.apple.com/join/rrIF6Vnc)
-- [Body Insights](https://apps.apple.com/my/app/body-insights/id1397531585)
-- [Cinematic](https://github.com/Rspoon3/Cinematic)
-- [NYAB Field Service](https://apps.apple.com/kw/app/nyab-field-service/id1496562731) (Beta)
-
 ## Installation 
 
 ### Swift Package Manager (Preferred)
