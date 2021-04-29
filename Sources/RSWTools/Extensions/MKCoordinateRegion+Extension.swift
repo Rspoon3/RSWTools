@@ -11,10 +11,10 @@ import MapKit
 public extension MKCoordinateRegion {
     
     struct BoundingBox{
-        var topLeft:     CLLocationCoordinate2D
-        var bottomRight: CLLocationCoordinate2D
-        var bottomLeft:  CLLocationCoordinate2D
-        var topRight:    CLLocationCoordinate2D
+        public var topLeft:     CLLocationCoordinate2D
+        public var bottomRight: CLLocationCoordinate2D
+        public var bottomLeft:  CLLocationCoordinate2D
+        public var topRight:    CLLocationCoordinate2D
     }
 
     var boundingBoxCoordinates: BoundingBox {

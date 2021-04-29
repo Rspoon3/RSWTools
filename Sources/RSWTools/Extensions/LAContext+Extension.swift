@@ -9,7 +9,7 @@
 import Foundation
 import LocalAuthentication
 
-extension LAContext {
+public extension LAContext {
     enum BiometricType: String {
         case none, touchID, faceID, unknown, cantEvaluate
     }
