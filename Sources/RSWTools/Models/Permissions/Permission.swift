@@ -15,7 +15,8 @@ public struct Permission{
     public let subTitle: String
     public let symbol: SFSymbol
     
-    public static let locationWhenInUse = Permission(title: "Location While In Use",
+    @available(iOS 14.0, *)
+    internal static let locationWhenInUse = Permission(title: "Location While In Use",
                                               subTitle: "Attaches your location to a service request.",
                                               symbol: SFSymbol.locationViewfinder)
 }

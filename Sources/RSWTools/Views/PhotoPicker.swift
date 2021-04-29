@@ -8,6 +8,7 @@
 import SwiftUI
 import PhotosUI
 
+@available(iOS 14.0, *)
 public struct PhotoPicker: UIViewControllerRepresentable {
     let results: (Result<UIImage, Error>) -> Void
     

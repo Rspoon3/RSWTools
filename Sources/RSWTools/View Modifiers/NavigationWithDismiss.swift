@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-
+@available(iOS 14.0, *)
 public struct NavigationWithDismiss: ViewModifier {
     @Environment(\.presentationMode) var presentationMode
     

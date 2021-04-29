@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@available(iOS 13.4, *)
 public struct PermissionRow: View {
     @Environment(\.sizeCategory) var sizeCategory
     @Binding var status: PermissionStatus
@@ -60,6 +61,7 @@ public struct PermissionRow: View {
     }
 }
 
+@available(iOS 14, *)
 struct PermissionRow_Previews: PreviewProvider {
     static let statusTypes = [PermissionStatus.denied]
     

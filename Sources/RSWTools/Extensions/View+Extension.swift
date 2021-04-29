@@ -14,6 +14,7 @@ public extension View{
         clipShape(RoundedCorner(radius: radius, corners: corners))
     }
     
+    @available(iOS 14.0, *)
     func addNavigationWithDismiss() -> some View{
         return self.modifier(NavigationWithDismiss())
     }
