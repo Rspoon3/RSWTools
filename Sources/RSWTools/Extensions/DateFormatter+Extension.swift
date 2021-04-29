@@ -11,11 +11,13 @@ import Foundation
 public extension DateFormatter{
     convenience init(dateStyle: DateFormatter.Style) {
         self.init()
+        self.locale = .current
         self.dateStyle = dateStyle
     }
     
     convenience init(dateFormat: String) {
         self.init()
+        self.locale = .current
         self.dateFormat = dateFormat
     }
 }

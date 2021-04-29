@@ -12,5 +12,6 @@ public extension NumberFormatter{
     convenience init(numberStyle: NumberFormatter.Style) {
         self.init()
         self.numberStyle = numberStyle
+        self.locale = .current
     }
 }
