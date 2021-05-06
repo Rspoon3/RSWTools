@@ -14,15 +14,25 @@ public extension UIApplication {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
-    func requestReview(delay: Int){
+    @available(iOS 14.0, *)
+    func requestReview(delay: Int?){
         #if DEBUG
         return
         #else
         guard let scene =  connectedScenes
                 .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene else { return }
-        let after = DispatchTimeInterval.seconds(delay)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + after){
+        
+        if let delay = delay{
+            if delay == 0{
+                SKStoreReviewController.requestReview(in: scene)
+            } else {
+                let after = DispatchTimeInterval.seconds(delay)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + after){
+                    SKStoreReviewController.requestReview(in: scene)
+                }
+            }
+        } else {
             SKStoreReviewController.requestReview(in: scene)
         }
         #endif
