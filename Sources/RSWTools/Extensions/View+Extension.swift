@@ -19,6 +19,7 @@ public extension View{
         return self.modifier(NavigationWithDismiss())
     }
     
+    @available(swift, obsoleted: 5.5, message: "This method has been removed. Please use naive APIs.")
     @ViewBuilder
     func `if`<Transform: View>(_ condition: Bool, transform: (Self) -> Transform) -> some View {
         if condition {
