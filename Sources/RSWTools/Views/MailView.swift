@@ -18,6 +18,13 @@ public struct MailView: UIViewControllerRepresentable {
     let message: String
     @Binding var result: Result<MFMailComposeResult, Error>?
     
+    public init(recipients: [String], subject: String, message: String, result: Binding<Result<MFMailComposeResult, Error>?>){
+        self.recipients = recipients
+        self.subject = subject
+        self.message = message
+        _result = result
+    }
+    
     
     public class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
         
