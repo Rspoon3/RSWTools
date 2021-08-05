@@ -9,56 +9,50 @@
 import SwiftUI
 import MessageUI
 
+
 public struct MailView: UIViewControllerRepresentable {
     
     @Environment(\.presentationMode) var presentation
-    let result: (Result<MFMailComposeResult, Error>)->Void
+    let recipients: [String]
+    let subject: String
+    let message: String
+    @Binding var result: Result<MFMailComposeResult, Error>?
     
-    public init(_ result: @escaping (Result<MFMailComposeResult, Error>)->Void){
-        self.result = result
-    }
     
     public class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
-        let parent: MailView
         
-        init(_ parent: MailView){
-            self.parent = parent
+        @Binding var presentation: PresentationMode
+        @Binding var result: Result<MFMailComposeResult, Error>?
+        
+        init(presentation: Binding<PresentationMode>,
+             result: Binding<Result<MFMailComposeResult, Error>?>) {
+            _presentation = presentation
+            _result = result
         }
         
         public func mailComposeController(_ controller: MFMailComposeViewController,
                                    didFinishWith result: MFMailComposeResult,
                                    error: Error?) {
             defer {
-                parent.presentation.wrappedValue.dismiss()
+                $presentation.wrappedValue.dismiss()
             }
-            
-            if let error = error{
-                self.parent.result(.failure(error))
+            guard error == nil else {
+                self.result = .failure(error!)
+                return
             }
-            
-            self.parent.result(.success(result))
+            self.result = .success(result)
         }
     }
     
     public func makeCoordinator() -> Coordinator {
-        return Coordinator(self)
+        return Coordinator(presentation: presentation, result: $result)
     }
     
     public func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
         let vc = MFMailComposeViewController()
         vc.mailComposeDelegate = context.coordinator
-        
-        
-        let systemVersion = UIDevice.current.systemVersion
-        var message = "\n\n\n\n\n\n\n\n\n\nOS Version: \(systemVersion)"
-
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
-           let build = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String{
-            message.append("\nApp Version: \(version)(\(build))")
-        }
-        
-        vc.setToRecipients(["Apple.Developer@nyab.com"])
-        vc.setSubject("NYAB Field Service Feedback")
+        vc.setToRecipients(recipients)
+        vc.setSubject(subject)
         vc.setMessageBody(message, isHTML: false)
         return vc
     }
@@ -71,6 +65,9 @@ public struct MailView: UIViewControllerRepresentable {
 
 struct MailView_Previews: PreviewProvider {
     static var previews: some View {
-        MailView{ _ in }
+        MailView(recipients: ["richardwitherspoon3@gmail.com"],
+                 subject: "Feedback",
+                 message: "This is a test",
+                 result: .constant(nil))
     }
 }
