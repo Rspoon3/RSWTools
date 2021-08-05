@@ -35,7 +35,7 @@ public struct SettingsMadeBy: View {
                     .padding(.bottom)
             }
             .onTapGesture {
-                openURL(Website.openAppInAppStore(appID: appID))
+                openURL(.appStore(appID: appID))
             }
             VStack{
                 Text("Designed and Developed")
@@ -46,7 +46,7 @@ public struct SettingsMadeBy: View {
             .font(.caption)
             .frame(maxWidth: .infinity, alignment: .center)
             .onTapGesture{
-                openURL(Website.personal.url)
+                openURL(.personal)
             }
         }
         .padding(.top)

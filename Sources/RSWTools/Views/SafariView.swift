@@ -11,16 +11,8 @@ import SafariServices
 
 
 public struct SafariView: UIViewControllerRepresentable {
-    private let url: URL
     @Environment(\.presentationMode) var presentationMode
-    
-    public init(urlString: String){
-        url = URL(string: urlString)!
-    }
-    
-    public init(website: Website){
-        url = website.url
-    }
+    private let url: URL
     
     public init(url: URL){
         self.url = url
@@ -56,6 +48,6 @@ public struct SafariView: UIViewControllerRepresentable {
 
 struct SafariView_Previews: PreviewProvider {
     static var previews: some View {
-        SafariView(website: .personal)
+        SafariView(url: .personal)
     }
 }

@@ -39,12 +39,11 @@ public enum MultiAlert: Identifiable {
                 completion?()
             })
         case .permissionDenied(let openAction):
-            let url = URL(string: UIApplication.openSettingsURLString)!
             return Alert(title: Text("Permission Denied"),
                          message: Text("This permission is denied. Would you like to change this in the settings app?"),
                          primaryButton: .default(Text("Yes"),
                                                  action: {
-                openAction(url)
+                openAction(.appSettings)
             }),
                          secondaryButton: .cancel(Text("No")))
         case .custom(let alert):
