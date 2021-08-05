@@ -10,6 +10,47 @@ import SwiftUI
 
 public extension Color{
     static let safari = Color(.safari)
+    
+    //MARK: Label
+    static let label           = Color(.label)
+    static let secondaryLabel  = Color(.secondaryLabel)
+    static let tertiaryLabel   = Color(.tertiaryLabel)
+    static let quaternaryLabel = Color(.quaternaryLabel)
+    
+    //MARK: Fill
+    static let systemFill           = Color(.systemFill)
+    static let secondarySystemFill  = Color(.secondarySystemFill)
+    static let tertiarySystemFill   = Color(.tertiarySystemFill)
+    static let quaternarySystemFill = Color(.quaternarySystemFill)
+    
+    //MARK: Text
+    static let placeholderText = Color(.placeholderText)
+    static let lightText       = Color(.lightText)
+
+    //MARK: System Background
+    static let systemBackground          = Color(.systemBackground)
+    static let secondarySystemBackground = Color(.secondarySystemBackground)
+    static let tertiarySystemBackground  = Color(.tertiarySystemBackground)
+    
+    //MARK: System Grouped Background
+    static let systemGroupedBackground          = Color(.systemGroupedBackground)
+    static let secondarySystemGroupedBackground = Color(.secondarySystemGroupedBackground)
+    static let tertiarySystemGroupedBackground = Color(.tertiarySystemGroupedBackground)
+    
+    //MARK: Separator
+    static let separator       = Color(.separator)
+    static let opaqueSeparator = Color(.opaqueSeparator)
+    
+    //MARK: Link
+    static let link = Color(.link)
+    
+    //MARK: Gray
+    static let systemGray  = Color(.systemGray)
+    static let systemGray2 = Color(.systemGray2)
+    static let systemGray3 = Color(.systemGray3)
+    static let systemGray4 = Color(.systemGray4)
+    static let systemGray5 = Color(.systemGray5)
+    static let systemGray6 = Color(.systemGray6)
 
     init(hex: String) {
         self.init(UIColor(hex: hex))
