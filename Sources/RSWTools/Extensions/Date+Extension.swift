@@ -8,9 +8,20 @@
 
 import Foundation
 
-public extension Date {
+extension Date {
+    var isToday: Bool {
+        Calendar.current.isDateInToday(self)
+    }
+    
     var startOfDay: Date {
         return Calendar.current.startOfDay(for: self)
+    }
+    
+    var startOfMonth: Date {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month], from: self)
+        
+        return  calendar.date(from: components)!
     }
 
     var endOfDay: Date {
@@ -18,5 +29,17 @@ public extension Date {
         components.day = 1
         components.second = -1
         return Calendar.current.date(byAdding: components, to: startOfDay)!
+    }
+    
+    static var yesterday: Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+    }
+    
+    static func daysAgo(_ value: Int) -> Date {
+        return Calendar.current.date(byAdding: .day, value: -value, to: Date())!
+    }
+    
+    func isInSame(_ component: Calendar.Component, as date: Date) -> Bool {
+        Calendar.current.isDate(self, equalTo: date, toGranularity: component)
     }
 }
