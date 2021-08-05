@@ -11,7 +11,6 @@ import SwiftUI
 @available(iOS 14.0, *)
 public struct SettingsMadeBy: View {
     let appID: Int
-    @State private var showPersonalWebsite = false
     @Environment(\.openURL) var openURL
 
     public init(appID: Int){
@@ -47,10 +46,7 @@ public struct SettingsMadeBy: View {
             .font(.caption)
             .frame(maxWidth: .infinity, alignment: .center)
             .onTapGesture{
-                showPersonalWebsite.toggle()
-            }
-            .sheet(isPresented: $showPersonalWebsite){
-                SafariView(website: .personal)
+                openURL(Website.personal.url)
             }
         }
         .padding(.top)
