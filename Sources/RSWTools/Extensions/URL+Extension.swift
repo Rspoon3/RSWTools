@@ -11,6 +11,7 @@ public extension URL{
     static let swiftBySundell = URL(string: "https://www.swiftbysundell.com")!
     static let personal = URL(string: "https://www.rspoon3.com")!
     static let apple = URL(string: "https://www.apple.com")!
+    static let appStorePage = URL(string: "https://apps.apple.com/us/developer/richard-witherspoon/id1397531584")!
     static let appSettings = URL(string: UIApplication.openSettingsURLString)!
 
     static func twitter(username: String)-> URL{
