@@ -8,10 +8,12 @@
 
 import SwiftUI
 
+@available(iOS 14.0, *)
 public struct SettingsMadeBy: View {
     let appID: Int
     @State private var showPersonalWebsite = false
-    
+    @Environment(\.openURL) var openURL
+
     public init(appID: Int){
         self.appID = appID
     }
@@ -34,7 +36,7 @@ public struct SettingsMadeBy: View {
                     .padding(.bottom)
             }
             .onTapGesture {
-                UIApplication.shared.open(Website.openAppInAppStore(appID: appID), options: [:])
+                openURL(Website.openAppInAppStore(appID: appID))
             }
             VStack{
                 Text("Designed and Developed")
@@ -56,6 +58,7 @@ public struct SettingsMadeBy: View {
     }
 }
 
+@available(iOS 14.0, *)
 struct SettingsMadeBy_Previews: PreviewProvider {
     static var previews: some View {
         SettingsMadeBy(appID: 1496562731)

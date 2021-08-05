@@ -10,6 +10,8 @@ import UIKit
 import StoreKit
 
 public extension UIApplication {
+    
+    @available(swift, obsoleted: 5.5, message: "This method has been removed. Please use naive APIs.")
     func endEditing() {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
@@ -36,12 +38,5 @@ public extension UIApplication {
             SKStoreReviewController.requestReview(in: scene)
         }
         #endif
-    }
-    
-    func openSettingsDotApp(){
-        if let settingsUrl = URL(string: UIApplication.openSettingsURLString),
-           canOpenURL(settingsUrl) {
-            open(settingsUrl)
-        }
     }
 }

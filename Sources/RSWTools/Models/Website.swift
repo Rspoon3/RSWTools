@@ -32,12 +32,10 @@ public struct Website{
     }
     
     public static func appStoreReview(appID: Int)->URL{
-        let url = URL(string: "https://itunes.apple.com/app/appName/id\(appID)?mt=8&action=write-review")!
-        return url
+        URL(string: "https://itunes.apple.com/app/appName/id\(appID)?mt=8&action=write-review")!
     }
     
     public static func openAppInAppStore(appID: Int)->URL{
-        let url = URL(string: "https://itunes.apple.com/app/appName/id\(appID)")!
-        return url
+        URL(string: "https://itunes.apple.com/app/appName/id\(appID)")!
     }
 }
