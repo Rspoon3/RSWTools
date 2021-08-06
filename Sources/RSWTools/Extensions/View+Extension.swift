@@ -19,13 +19,20 @@ public extension View{
         return self.modifier(NavigationWithDismiss())
     }
     
-    @available(swift, obsoleted: 5.5, message: "This method has been removed. Please use naive APIs.")
     @ViewBuilder
     func `if`<Transform: View>(_ condition: Bool, transform: (Self) -> Transform) -> some View {
         if condition {
             transform(self)
         } else {
             self
+        }
+    }
+    
+    func badge<V: View>(@ViewBuilder content: () -> V) -> some View {
+        HStack{
+            self
+                .frame(maxWidth: .infinity, alignment: .leading)
+            content()
         }
     }
 }
