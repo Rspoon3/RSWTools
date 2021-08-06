@@ -8,6 +8,7 @@
 
 import Foundation
 import LocalAuthentication
+import SFSymbols
 
 public extension LAContext {
     enum BiometricType: String {
@@ -33,6 +34,20 @@ public extension LAContext {
             return .faceID
         @unknown default:
             return .unknown
+        }
+    }
+    
+    @available(iOSApplicationExtension 14, *)
+    var symbol: SFSymbol{
+        switch biometricType {
+        case .none, .cantEvaluate:
+            return .exclamationmark
+        case .touchID:
+            return .touchid
+        case .faceID:
+            return .faceid
+        case .unknown:
+            return .questionmark
         }
     }
     
