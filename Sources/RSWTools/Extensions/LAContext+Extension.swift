@@ -11,7 +11,11 @@ import LocalAuthentication
 
 public extension LAContext {
     enum BiometricType: String {
-        case none, touchID, faceID, unknown, cantEvaluate
+        case none
+        case touchID = "Touch ID"
+        case faceID  = "Face ID"
+        case unknown
+        case cantEvaluate
     }
     
     var biometricType: BiometricType {
@@ -31,7 +35,7 @@ public extension LAContext {
             return .unknown
         }
     }
-        
+    
     @available(iOSApplicationExtension 15.0, *)
     func evaluatePolicy(policy: LAPolicy, localizedReason: String) async throws -> Bool{
         return try await withCheckedThrowingContinuation { continuation in
