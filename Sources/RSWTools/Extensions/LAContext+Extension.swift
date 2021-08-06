@@ -31,4 +31,17 @@ public extension LAContext {
             return .unknown
         }
     }
+        
+    @available(iOSApplicationExtension 15.0, *)
+    func evaluatePolicy(policy: LAPolicy, localizedReason: String) async throws -> Bool{
+        return try await withCheckedThrowingContinuation { continuation in
+            evaluatePolicy(policy, localizedReason: localizedReason) { success, error in
+                if let error = error{
+                    continuation.resume(throwing: error)
+                } else{
+                    continuation.resume(returning: success)
+                }
+            }
+        }
+    }
 }
