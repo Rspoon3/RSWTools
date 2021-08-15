@@ -37,7 +37,7 @@ public extension LAContext {
         }
     }
     
-    @available(iOSApplicationExtension 14, *)
+    @available(iOS 14, *)
     var symbol: SFSymbol{
         switch biometricType {
         case .none, .cantEvaluate:
@@ -51,7 +51,7 @@ public extension LAContext {
         }
     }
     
-    @available(iOSApplicationExtension 15.0, *)
+    @available(iOS 15, *)
     func evaluatePolicy(policy: LAPolicy, localizedReason: String) async throws -> Bool{
         return try await withCheckedThrowingContinuation { continuation in
             evaluatePolicy(policy, localizedReason: localizedReason) { success, error in
