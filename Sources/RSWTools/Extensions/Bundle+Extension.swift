@@ -13,17 +13,53 @@ public extension Bundle {
     static let appVersion = main.infoDictionary?["CFBundleShortVersionString"] as? String
     static let appBuild   = main.infoDictionary?["CFBundleVersion"] as? String
     
-    static var appIcon: UIImage {
-        guard let iconsDictionary = main.infoDictionary?["CFBundleIcons"] as? NSDictionary,
+    enum IconType{
+        case current, primary, alternative(named: String)
+    }
+    
+    static func appIcon(type: IconType) -> UIImage {
+        let exclamationMark = UIImage(symbol: .exclamationmark)
+                
+        // First will be smallest for the device class, last will be the largest for device class
+        switch type{
+        case .current:
+            if let currentAlternativeIconName = UIApplication.shared.alternateIconName{
+                return getAlternateAppIcon(named: currentAlternativeIconName) ?? exclamationMark
+            } else {
+                return getPrimaryAppIcon() ?? exclamationMark
+            }
+        case .primary:
+            return getPrimaryAppIcon() ?? exclamationMark
+        case .alternative(let iconName):
+            return getAlternateAppIcon(named: iconName) ?? exclamationMark
+        }
+    }
+    
+    static private func getPrimaryAppIcon()->UIImage?{
+        guard
+            let iconsDictionary = main.infoDictionary?["CFBundleIcons"] as? NSDictionary,
             let primaryIconsDictionary = iconsDictionary["CFBundlePrimaryIcon"] as? NSDictionary,
             let iconFiles = primaryIconsDictionary["CFBundleIconFiles"] as? NSArray,
-            // First will be smallest for the device class, last will be the largest for device class
-            let lastIcon = iconFiles.lastObject as? String,
-            let icon = UIImage(named: lastIcon) else {
-            return UIImage(symbol: .exclamationmark)
+            let lastIcon = iconFiles.lastObject as? String
+        else {
+            return nil
         }
-
-        return icon
+        
+        return UIImage(named: lastIcon)
+    }
+    
+    static private func getAlternateAppIcon(named iconName: String)->UIImage?{
+        guard
+            let iconsDictionary = main.infoDictionary?["CFBundleIcons"] as? NSDictionary,
+            let alternativeIconsDictionary = iconsDictionary["CFBundleAlternateIcons"] as? NSDictionary,
+            let alternativeIconDictionary = alternativeIconsDictionary[iconName] as? NSDictionary,
+            let iconFiles = alternativeIconDictionary["CFBundleIconFiles"] as? NSArray,
+            let lastIcon = iconFiles.lastObject as? String
+        else {
+            return nil
+        }
+        
+        return UIImage(named: lastIcon)
     }
     
     func decode<T: Decodable>(_ type: T.Type, from file: String, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate, keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys) -> T {
