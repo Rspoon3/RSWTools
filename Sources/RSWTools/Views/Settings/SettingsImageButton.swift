@@ -15,7 +15,10 @@ public struct SettingsImageButton: View {
     let size:  CGFloat
     let action: ()->()
     
-    public init(_ text: String, image: Image, color: Color? = nil, size:Int = 30, action: @escaping ()->()){
+    public init(_ text: String,
+                image: Image, color: Color? = nil,
+                size:Int = 30,
+                action: @escaping ()->()){
         self.text = text
         self.image = image
         self.color = color
@@ -29,7 +32,8 @@ public struct SettingsImageButton: View {
         }, label: {
             HStack{
                 Text(text)
-                Spacer()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
                 ZStack{
                     if let color = color{
                         color
@@ -50,7 +54,9 @@ public struct SettingsImageButton: View {
 struct SettingsImageButton_Previews: PreviewProvider {
     static var previews: some View {
         Form{
-            SettingsImageButton("Privacy Policy", image: Image(symbol: .handRaisedFill), color: .accentColor, size: 20){}
+            SettingsImageButton("Privacy Policy",
+                                image: Image(symbol: .handRaisedFill),
+                                color: .accentColor, size: 20){}
         }
     }
 }

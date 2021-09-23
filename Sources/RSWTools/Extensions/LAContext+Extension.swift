@@ -8,10 +8,15 @@
 
 import Foundation
 import LocalAuthentication
+import SFSymbols
 
 public extension LAContext {
     enum BiometricType: String {
-        case none, touchID, faceID, unknown, cantEvaluate
+        case none
+        case touchID = "Touch ID"
+        case faceID  = "Face ID"
+        case unknown
+        case cantEvaluate
     }
     
     var biometricType: BiometricType {
@@ -29,6 +34,33 @@ public extension LAContext {
             return .faceID
         @unknown default:
             return .unknown
+        }
+    }
+    
+    @available(iOS 14, *)
+    var symbol: SFSymbol{
+        switch biometricType {
+        case .none, .cantEvaluate:
+            return .exclamationmark
+        case .touchID:
+            return .touchid
+        case .faceID:
+            return .faceid
+        case .unknown:
+            return .questionmark
+        }
+    }
+    
+    @available(iOS 15, *)
+    func evaluatePolicy(policy: LAPolicy, localizedReason: String) async throws -> Bool{
+        return try await withCheckedThrowingContinuation { continuation in
+            evaluatePolicy(policy, localizedReason: localizedReason) { success, error in
+                if let error = error{
+                    continuation.resume(throwing: error)
+                } else{
+                    continuation.resume(returning: success)
+                }
+            }
         }
     }
 }

@@ -10,16 +10,15 @@ import PhotosUI
 
 @available(iOS 14.0, *)
 public struct PhotoPicker: UIViewControllerRepresentable {
-    let results: (Result<UIImage, Error>) -> Void
+    public let configuration: PHPickerConfiguration
+    @Binding public var results: [PHPickerResult]
     
-    public init(_ results: @escaping (Result<UIImage, Error>)-> Void){
-        self.results = results
+    public init(configuration: PHPickerConfiguration, results: Binding<[PHPickerResult]>){
+        self.configuration = configuration
+        self._results = results
     }
     
     public func makeUIViewController(context: UIViewControllerRepresentableContext<PhotoPicker>) -> PHPickerViewController {
-        var configuration = PHPickerConfiguration()
-        configuration.filter = .images
-        
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = context.coordinator
         return picker
@@ -41,23 +40,7 @@ public struct PhotoPicker: UIViewControllerRepresentable {
         
         public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             picker.dismiss(animated: true)
-            
-            guard let
-                    provider = results.first?.itemProvider,
-                  provider.canLoadObject(ofClass: UIImage.self)
-            else {
-                return
-            }
-            
-            provider.loadObject(ofClass: UIImage.self) { (image, error) in
-                DispatchQueue.main.async {
-                    if let selectedImage = image as? UIImage {
-                        self.parent.results(.success(selectedImage))
-                    } else if let error = error{
-                        self.parent.results(.failure(error))
-                    }
-                }
-            }
+            parent.results = results
         }
     }
 }

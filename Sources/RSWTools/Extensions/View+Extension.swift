@@ -27,4 +27,12 @@ public extension View{
             self
         }
     }
+    
+    func badge<V: View>(@ViewBuilder content: () -> V) -> some View {
+        HStack{
+            self
+                .frame(maxWidth: .infinity, alignment: .leading)
+            content()
+        }
+    }
 }

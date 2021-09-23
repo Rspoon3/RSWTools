@@ -10,6 +10,7 @@ import UIKit
 import StoreKit
 
 public extension UIApplication {
+    
     func endEditing() {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
@@ -36,12 +37,5 @@ public extension UIApplication {
             SKStoreReviewController.requestReview(in: scene)
         }
         #endif
-    }
-    
-    func openSettingsDotApp(){
-        if let settingsUrl = URL(string: UIApplication.openSettingsURLString),
-           canOpenURL(settingsUrl) {
-            open(settingsUrl)
-        }
     }
 }
