@@ -20,7 +20,7 @@ public struct SettingsMadeBy: View {
     public var body: some View {
         VStack{
             VStack{
-                Image(uiImage: Bundle.appIcon)
+                Image(uiImage: Bundle.appIcon(type: .current))
                     .resizable()
                     .scaledToFit()
                     .frame(width: 35, height: 35)
