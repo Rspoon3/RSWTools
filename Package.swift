@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -13,13 +13,13 @@ let package = Package(
             targets: ["RSWTools"]),
     ],
     dependencies: [
-        .package(name: "SFSymbols", url: "https://github.com/Rspoon3/SFSymbols.git", from: "1.0.0"),
+        .package(name: "SwiftTools", url: "https://github.com/Rspoon3/SwiftTools.git", branch: "release-1.0.0")
     ],
     targets: [
         .target(
             name: "RSWTools",
             dependencies: [
-                "SFSymbols"
+                "SwiftTools"
             ]
         ),
         .testTarget(

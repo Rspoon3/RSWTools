@@ -7,6 +7,8 @@
 
 import SwiftUI
 import SFSymbols
+import SwiftTools
+
 
 @available(iOS 14.0, *)
 public struct SFSymbolPicker: View {
