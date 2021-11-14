@@ -16,15 +16,11 @@ public struct SFSymbolPicker: View {
     @StateObject var searchBar = SearchBar()
     @State private var currentSymbols = SFSymbol.allSymbols
     @State private var sort: Int = 0
-    @Binding var symbol: SFSymbol
     
-    public init(symbol: Binding<SFSymbol>){
-        _symbol = symbol
-    }
+    public var symbolTitle: String
+    public var result: (SFSymbol)->Void
     
-    let columns = [
-        GridItem(.adaptive(minimum: 65))
-    ]
+    let columns = [GridItem(.adaptive(minimum: 65))]
     
     var searchResults: [SFSymbol]{
         if searchBar.text.isEmpty{
@@ -33,8 +29,16 @@ public struct SFSymbolPicker: View {
         
         return currentSymbols.filter{$0.title.localizedCaseInsensitiveContains(searchBar.text)}
     }
+        
+    
+    //MARK: Initializer
+    public init(symbolTitle: String, result: @escaping (SFSymbol) -> Void) {
+        self.symbolTitle = symbolTitle
+        self.result = result
+    }
     
     
+    //MARK: Body
     public var body: some View{
         NavigationView{
             ZStack{
@@ -51,14 +55,14 @@ public struct SFSymbolPicker: View {
                                     .padding(.horizontal)
                                     .foregroundColor(.accentColor)
                                     .onTapGesture{
-                                        self.symbol = symbol
+                                        result(symbol)
                                         dismiss()
                                     }
                                     .contextMenu{
                                         Text(symbol.title)
                                     }
                                 
-                                if self.symbol == symbol{
+                                if symbolTitle == symbol.title{
                                     Image(symbol: .checkmark)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
@@ -115,6 +119,6 @@ public struct SFSymbolPicker: View {
 @available(iOS 15.0, *)
 struct SFSymbolPicker_Previews: PreviewProvider {
     static var previews: some View {
-        SFSymbolPicker(symbol: .constant(.share))
+        SFSymbolPicker(symbolTitle: SFSymbol.share.title){ _ in}
     }
 }

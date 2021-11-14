@@ -90,7 +90,9 @@ struct ExampleList: View{
                     showSFSymbolPicker.toggle()
                 }
                 .sheet(isPresented: $showSFSymbolPicker){
-                    SFSymbolPicker(symbol: $pickedSymbol)
+                    SFSymbolPicker(symbolTitle: pickedSymbol.title){
+                        pickedSymbol = $0
+                    }
                 }
             }
             
