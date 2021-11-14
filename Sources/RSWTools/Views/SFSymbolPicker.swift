@@ -29,7 +29,7 @@ public struct SFSymbolPicker: View {
         
         return currentSymbols.filter{$0.title.localizedCaseInsensitiveContains(searchBar.text)}
     }
-        
+    
     
     //MARK: Initializer
     public init(symbolTitle: String, result: @escaping (SFSymbol) -> Void) {
@@ -40,41 +40,39 @@ public struct SFSymbolPicker: View {
     
     //MARK: Body
     public var body: some View{
-        NavigationView{
-            ZStack{
-                Color(.systemGroupedBackground)
-                    .edgesIgnoringSafeArea(.all)
-                ScrollView{
-                    LazyVGrid(columns: columns, spacing: 30){
-                        ForEach(searchResults) { symbol in
-                            ZStack(alignment: .topTrailing){
-                                Image(symbol: symbol)
+        ZStack{
+            Color(.systemGroupedBackground)
+                .edgesIgnoringSafeArea(.all)
+            ScrollView{
+                LazyVGrid(columns: columns, spacing: 30){
+                    ForEach(searchResults) { symbol in
+                        ZStack(alignment: .topTrailing){
+                            Image(symbol: symbol)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(minHeight: 30)
+                                .padding(.horizontal)
+                                .foregroundColor(.accentColor)
+                                .onTapGesture{
+                                    result(symbol)
+                                    dismiss()
+                                }
+                                .contextMenu{
+                                    Text(symbol.title)
+                                }
+                            
+                            if symbolTitle == symbol.title{
+                                Image(symbol: .checkmark)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(minHeight: 30)
-                                    .padding(.horizontal)
-                                    .foregroundColor(.accentColor)
-                                    .onTapGesture{
-                                        result(symbol)
-                                        dismiss()
-                                    }
-                                    .contextMenu{
-                                        Text(symbol.title)
-                                    }
-                                
-                                if symbolTitle == symbol.title{
-                                    Image(symbol: .checkmark)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(height: 15)
-                                        .foregroundColor(.accentColor == .green ? .blue : .green)
-                                        .font(.headline)
-                                }
+                                    .frame(height: 15)
+                                    .foregroundColor(.accentColor == .green ? .blue : .green)
+                                    .font(.headline)
                             }
                         }
                     }
-                    .padding(.top)
                 }
+                .padding(.top)
             }
             .navigationTitle("Symbol Picker")
             .navigationBarTitleDisplayMode(.inline)
@@ -84,12 +82,6 @@ public struct SFSymbolPicker: View {
                 currentSymbols = SFSymbol.Category.allCases[value].symbols
             }
             .toolbar{
-                ToolbarItem(placement: .cancellationAction){
-                    Button("Dismiss"){
-                        dismiss()
-                    }
-                }
-                
                 ToolbarItem(placement: .primaryAction){
                     filterMenu
                 }

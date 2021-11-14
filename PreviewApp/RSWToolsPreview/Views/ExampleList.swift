@@ -20,8 +20,6 @@ struct ExampleList: View{
     @State private var showSFSymbolPicker = false
     @State private var website = URL.personal
     @State private var pickedSymbol  = SFSymbol.listDash
-
-    @State private var search = String()
     
     
     enum Example: Hashable {
@@ -90,8 +88,19 @@ struct ExampleList: View{
                     showSFSymbolPicker.toggle()
                 }
                 .sheet(isPresented: $showSFSymbolPicker){
-                    SFSymbolPicker(symbolTitle: pickedSymbol.title){
-                        pickedSymbol = $0
+                    NavigationView{
+                        Form{
+                            NavigationLink {
+                                SFSymbolPicker(symbolTitle: pickedSymbol.title){
+                                    pickedSymbol = $0
+                                }
+                            } label: {
+                                Label("Image", symbol: pickedSymbol)
+                                    .labelStyle(.coloredBadge(.accentColor))
+                            }
+                        }
+                        .navigationBarTitle("Symbol Form")
+                        .navigationBarTitleDisplayMode(.inline)
                     }
                 }
             }
