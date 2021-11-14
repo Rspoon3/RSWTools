@@ -12,31 +12,26 @@ import SwiftTools
 
 @available(iOS 15.0, *)
 public struct SFSymbolPicker: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
+    @StateObject var searchBar = SearchBar()
     @State private var currentSymbols = SFSymbol.allSymbols
     @State private var sort: Int = 0
-    @State private var searchText = String()
-    @State private var animation: Animation?
     @Binding var symbol: SFSymbol
     
     public init(symbol: Binding<SFSymbol>){
         _symbol = symbol
     }
-
+    
     let columns = [
-        GridItem(.adaptive(minimum: 80))
+        GridItem(.adaptive(minimum: 65))
     ]
     
     var searchResults: [SFSymbol]{
-        if searchText.isEmpty{
+        if searchBar.text.isEmpty{
             return currentSymbols
         }
         
-        let filteredByTitle = currentSymbols.filter({$0.title.lowercased().contains(searchText.lowercased())})
-        
-        return withAnimation(.default){
-             filteredByTitle
-        }
+        return currentSymbols.filter{$0.title.localizedCaseInsensitiveContains(searchBar.text)}
     }
     
     
@@ -46,24 +41,22 @@ public struct SFSymbolPicker: View {
                 Color(.systemGroupedBackground)
                     .edgesIgnoringSafeArea(.all)
                 ScrollView{
-                    SearchBar(text: $searchText, placeholder: "Search")
-                        .padding()
-                    LazyVGrid(columns: columns, spacing: 30, content: {
+                    LazyVGrid(columns: columns, spacing: 30){
                         ForEach(searchResults) { symbol in
                             ZStack(alignment: .topTrailing){
-                            Image(symbol: symbol)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 50, height: 50)
-                                .padding(.horizontal)
-                                .foregroundColor(.accentColor)
-                                .onTapGesture{
-                                    self.symbol = symbol
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                                .contextMenu{
-                                    Text(symbol.title)
-                                }
+                                Image(symbol: symbol)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(minHeight: 30)
+                                    .padding(.horizontal)
+                                    .foregroundColor(.accentColor)
+                                    .onTapGesture{
+                                        self.symbol = symbol
+                                        dismiss()
+                                    }
+                                    .contextMenu{
+                                        Text(symbol.title)
+                                    }
                                 
                                 if self.symbol == symbol{
                                     Image(symbol: .checkmark)
@@ -75,44 +68,46 @@ public struct SFSymbolPicker: View {
                                 }
                             }
                         }
-                    })
-                    .animation(animation)
-                }
-                .onChange(of: sort) { value in
-                    currentSymbols = SFSymbol.Category.allCases[value].symbols
-                }
-                .onAppear{
-                    //Don't want grid animating in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1){
-                        animation = .default
                     }
+                    .padding(.top)
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Symbol Picker")
+            .navigationBarTitleDisplayMode(.inline)
+            .animation(.default, value: searchResults)
+            .add(searchBar)
+            .onChange(of: sort) { value in
+                currentSymbols = SFSymbol.Category.allCases[value].symbols
+            }
             .toolbar{
                 ToolbarItem(placement: .cancellationAction){
-                    Button("Cancel"){
-                        presentationMode.wrappedValue.dismiss()
+                    Button("Dismiss"){
+                        dismiss()
                     }
                 }
                 
                 ToolbarItem(placement: .primaryAction){
-                    Menu{
-                        Picker(selection: $sort, label: Text("Filter options")) {
-                            ForEach(0..<SFSymbol.Category.allCases.count){ index in
-                                let category = SFSymbol.Category.allCases[index]
-                                Button(LocalizedStringKey(category.rawValue), symbol: category.symbol){
-                                    sort = index
-                                }.tag(index)
-                            }
-                        }
-                    } label: {
-                        Image(symbol: .filter)
-                            .imageScale(.large)
-                    }
+                    filterMenu
                 }
             }
+        }
+    }
+    
+    
+    //MARK: Computed Views
+    var filterMenu: some View{
+        Menu{
+            Picker("Filter Options", selection: $sort){
+                ForEach(0..<SFSymbol.Category.allCases.count){ index in
+                    let category = SFSymbol.Category.allCases[index]
+                    Button(LocalizedStringKey(category.rawValue), symbol: category.symbol){
+                        sort = index
+                    }
+                    .tag(index)
+                }
+            }
+        } label: {
+            Image(symbol: .filter)
         }
     }
 }
