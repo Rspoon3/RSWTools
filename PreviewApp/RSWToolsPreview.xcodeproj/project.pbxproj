@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A62F30702741849E006223B2 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62F306F2741849E006223B2 /* URL+Extension.swift */; };
 		A6507DA5262F19D400B8E3C6 /* MailPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6507DA4262F19D400B8E3C6 /* MailPreview.swift */; };
 		A662311A262E150400B3E84F /* RSWToolsPreviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6623119262E150400B3E84F /* RSWToolsPreviewApp.swift */; };
 		A662311C262E150400B3E84F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A662311B262E150400B3E84F /* ContentView.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		A6214656263230F3007D56CC /* CopyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyButton.swift; sourceTree = "<group>"; };
+		A62F306F2741849E006223B2 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		A643E2D326FCC754004CAA3D /* RSWTools */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RSWTools; path = ..; sourceTree = "<group>"; };
 		A6507DA4262F19D400B8E3C6 /* MailPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailPreview.swift; sourceTree = "<group>"; };
 		A660B1E426BDCBD200DAB1EA /* NSItemProvider+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+Extension.swift"; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				A662311D262E150400B3E84F /* Assets.xcassets */,
 				A6623122262E150400B3E84F /* Info.plist */,
 				A662311F262E150400B3E84F /* Preview Content */,
+				A62F306F2741849E006223B2 /* URL+Extension.swift */,
 			);
 			path = RSWToolsPreview;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 				A6623200262E163A00B3E84F /* AppSidebarNavigation.swift in Sources */,
 				A662311C262E150400B3E84F /* ContentView.swift in Sources */,
 				A662320C262E24E200B3E84F /* RichLinkPreviewView.swift in Sources */,
+				A62F30702741849E006223B2 /* URL+Extension.swift in Sources */,
 				A662311A262E150400B3E84F /* RSWToolsPreviewApp.swift in Sources */,
 				A662320F262E296A00B3E84F /* PhotoPickerPreview.swift in Sources */,
 				A6CEC10726FBB170009A766A /* PhotoPickerPreviewViewModel.swift in Sources */,
@@ -963,7 +967,7 @@
 				DEVELOPMENT_TEAM = SBS8ZBXB9U;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RSWToolsPreview/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -988,7 +992,7 @@
 				DEVELOPMENT_TEAM = SBS8ZBXB9U;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RSWToolsPreview/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

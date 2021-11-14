@@ -10,7 +10,7 @@ import SFSymbols
 import SwiftTools
 
 
-@available(iOS 14.0, *)
+@available(iOS 15.0, *)
 public struct SFSymbolPicker: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var currentSymbols = SFSymbol.allSymbols
@@ -117,7 +117,7 @@ public struct SFSymbolPicker: View {
     }
 }
 
-@available(iOS 14.0, *)
+@available(iOS 15.0, *)
 struct SFSymbolPicker_Previews: PreviewProvider {
     static var previews: some View {
         SFSymbolPicker(symbol: .constant(.share))

@@ -9,6 +9,8 @@ import SwiftUI
 import RSWTools
 import MessageUI
 import SFSymbols
+import SwiftTools
+
 
 class MailPreviewViewModel: ObservableObject{
     @Published var alert: MultiAlert?
