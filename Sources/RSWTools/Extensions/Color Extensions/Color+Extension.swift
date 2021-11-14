@@ -8,6 +8,6 @@
 import SwiftUI
 
 
-extension Color{
+public extension Color{
     static let safari = Color(.safari)
 }
