@@ -10,12 +10,12 @@ import SFSymbols
 import SwiftTools
 
 
-@available(iOS 15.0, *)
+@available(iOS 15.1, *)
 public struct SFSymbolPicker: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var searchBar = SearchBar()
-    @State private var currentSymbols = SFSymbol.allSymbols
-    @State private var sort: Int = 0
+    @State private var currentSymbols = SFSymbol.allSymbols()
+    @State private var sort: SFCategory = .all
     
     public var symbolTitle: String
     public var result: (SFSymbol)->Void
@@ -79,7 +79,7 @@ public struct SFSymbolPicker: View {
             .animation(.default, value: searchResults)
             .add(searchBar)
             .onChange(of: sort) { value in
-                currentSymbols = SFSymbol.Category.allCases[value].symbols
+                currentSymbols = value.symbols
             }
             .toolbar{
                 ToolbarItem(placement: .primaryAction){
@@ -94,12 +94,13 @@ public struct SFSymbolPicker: View {
     var filterMenu: some View{
         Menu{
             Picker("Filter Options", selection: $sort){
-                ForEach(0..<SFSymbol.Category.allCases.count){ index in
-                    let category = SFSymbol.Category.allCases[index]
-                    Button(LocalizedStringKey(category.rawValue), symbol: category.symbol){
-                        sort = index
+                ForEach(SFCategory.allCategories()){ category in
+                    Button {
+                        print("")
+                    } label: {
+                        Label(category.title, systemImage: category.icon)
                     }
-                    .tag(index)
+                    .tag(category)
                 }
             }
         } label: {
@@ -108,7 +109,7 @@ public struct SFSymbolPicker: View {
     }
 }
 
-@available(iOS 15.0, *)
+@available(iOS 15.1, *)
 struct SFSymbolPicker_Previews: PreviewProvider {
     static var previews: some View {
         SFSymbolPicker(symbolTitle: SFSymbol.share.title){ _ in}
