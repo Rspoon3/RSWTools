@@ -91,12 +91,8 @@ struct ExampleList: View{
                     NavigationView{
                         Form{
                             NavigationLink {
-                                if #available(iOS 15.1, *) {
-                                    SFSymbolPicker(symbolTitle: pickedSymbol.title){
-                                        pickedSymbol = $0
-                                    }
-                                } else {
-                                    Text("iOS 15.1 needed")
+                                SFSymbolPicker(symbolTitle: pickedSymbol.title, color: .pink){
+                                    pickedSymbol = $0
                                 }
                             } label: {
                                 Label("Image", symbol: pickedSymbol)

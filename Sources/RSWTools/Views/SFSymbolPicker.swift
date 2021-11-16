@@ -10,15 +10,16 @@ import SFSymbols
 import SwiftTools
 
 
-@available(iOS 15.1, *)
+@available(iOS 14, *)
 public struct SFSymbolPicker: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @StateObject var searchBar = SearchBar()
-    @State private var currentSymbols = SFSymbol.allSymbols()
+    @State private var currentSymbols = SFSymbol.allSymbols
     @State private var sort: SFCategory = .all
     
     public var symbolTitle: String
     public var result: (SFSymbol)->Void
+    private let color: Color
     
     let columns = [GridItem(.adaptive(minimum: 65))]
     
@@ -32,9 +33,10 @@ public struct SFSymbolPicker: View {
     
     
     //MARK: Initializer
-    public init(symbolTitle: String, result: @escaping (SFSymbol) -> Void) {
+    public init(symbolTitle: String, color: Color = .accentColor, result: @escaping (SFSymbol) -> Void) {
         self.symbolTitle = symbolTitle
         self.result = result
+        self.color = color
     }
     
     
@@ -52,10 +54,10 @@ public struct SFSymbolPicker: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(minHeight: 30)
                                 .padding(.horizontal)
-                                .foregroundColor(.accentColor)
+                                .foregroundColor(color)
                                 .onTapGesture{
                                     result(symbol)
-                                    dismiss()
+                                    presentationMode.wrappedValue.dismiss()
                                 }
                                 .contextMenu{
                                     Text(symbol.title)
@@ -66,7 +68,7 @@ public struct SFSymbolPicker: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(height: 15)
-                                    .foregroundColor(.accentColor == .green ? .blue : .green)
+                                    .foregroundColor(color == .green ? .blue : .green)
                                     .font(.headline)
                             }
                         }
@@ -94,7 +96,7 @@ public struct SFSymbolPicker: View {
     var filterMenu: some View{
         Menu{
             Picker("Filter Options", selection: $sort){
-                ForEach(SFCategory.allCategories()){ category in
+                ForEach(SFCategory.allCategories){ category in
                     Button {
                         print("")
                     } label: {
@@ -104,12 +106,16 @@ public struct SFSymbolPicker: View {
                 }
             }
         } label: {
-            Image(symbol: .filter)
+            if #available(iOS 15, *) {
+                Image(symbol: .filter)
+            } else {
+                Image(systemName: "line.horizontal.3.decrease.circle")
+            }
         }
     }
 }
 
-@available(iOS 15.1, *)
+@available(iOS 14, *)
 struct SFSymbolPicker_Previews: PreviewProvider {
     static var previews: some View {
         SFSymbolPicker(symbolTitle: SFSymbol.share.title){ _ in}
