@@ -46,13 +46,13 @@ public struct SFSymbolPicker: View {
             Color(.systemGroupedBackground)
                 .edgesIgnoringSafeArea(.all)
             ScrollView{
-                LazyVGrid(columns: columns, spacing: 30){
+                LazyVGrid(columns: columns, spacing: 20){
                     ForEach(searchResults) { symbol in
                         ZStack(alignment: .topTrailing){
                             Image(symbol: symbol)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(minHeight: 30)
+                                .frame(height: 50)
                                 .padding(.horizontal)
                                 .foregroundColor(color)
                                 .onTapGesture{
@@ -74,7 +74,7 @@ public struct SFSymbolPicker: View {
                         }
                     }
                 }
-                .padding(.top)
+                .padding(.vertical)
             }
             .navigationTitle("Symbol Picker")
             .navigationBarTitleDisplayMode(.inline)
