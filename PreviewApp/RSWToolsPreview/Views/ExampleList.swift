@@ -8,6 +8,7 @@
 import SwiftUI
 import RSWTools
 import SFSymbols
+import SwiftTools
 
 
 struct ExampleList: View{
@@ -19,8 +20,6 @@ struct ExampleList: View{
     @State private var showSFSymbolPicker = false
     @State private var website = URL.personal
     @State private var pickedSymbol  = SFSymbol.listDash
-
-    @State private var search = String()
     
     
     enum Example: Hashable {
@@ -89,7 +88,20 @@ struct ExampleList: View{
                     showSFSymbolPicker.toggle()
                 }
                 .sheet(isPresented: $showSFSymbolPicker){
-                    SFSymbolPicker(symbol: $pickedSymbol)
+                    NavigationView{
+                        Form{
+                            NavigationLink {
+                                SFSymbolPicker(symbolTitle: pickedSymbol.title, color: .pink){
+                                    pickedSymbol = $0
+                                }
+                            } label: {
+                                Label("Image", symbol: pickedSymbol)
+                                    .labelStyle(.coloredBadge(.accentColor))
+                            }
+                        }
+                        .navigationBarTitle("Symbol Form")
+                        .navigationBarTitleDisplayMode(.inline)
+                    }
                 }
             }
             

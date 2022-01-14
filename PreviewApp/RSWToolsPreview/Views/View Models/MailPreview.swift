@@ -8,18 +8,17 @@
 import SwiftUI
 import RSWTools
 import MessageUI
+import SFSymbols
+import SwiftTools
+
 
 class MailPreviewViewModel: ObservableObject{
     @Published var alert: MultiAlert?
-    @Published var result: Result<MFMailComposeResult, Error>? = nil{
-        didSet{
-            if let result = result{
-                handleMail(with: result)
-            }
-        }
-    }
+    let attachment = MailView.Attachment(data: UIImage(symbol: .star).pngData()!,
+                                         mimeType: "image/png",
+                                         fileName: "star")
     
-    var emailMessage: String{
+    var emailMessage: MailView.Message{
         let systemVersion = UIDevice.current.systemVersion
         var message = "\n\n\n\n\n\n\(UIDevice.current.systemName) Version: \(systemVersion)"
         
@@ -27,12 +26,12 @@ class MailPreviewViewModel: ObservableObject{
             message.append("\nApp Version: \(version)(\(build))")
         }
         
-        return message
+        return .init(message: message, isHTML: false)
     }
     
     
     //MARK: Helpers
-    private func handleMail(with result: Result<MFMailComposeResult, Error>){
+    func handleMail(with result: Result<MFMailComposeResult, Error>){
         switch result{
         case .success(let result):
             switch result{
@@ -59,10 +58,11 @@ struct MailPreview: View {
     
     var body: some View {
         if MFMailComposeViewController.canSendMail(){
-            MailView(recipients: ["richardwitherspoon3@gmail.com"],
-                     subject: "Test Feedback From RSWTools",
-                     message: "Feedback message goes here",
-                     result: $model.result)
+            MailView(recipients: nil,
+                     subject: "Feedback",
+                     message: model.emailMessage,
+                     attachments: [model.attachment],
+                     result: model.handleMail)
                 .alert(item: $model.alert){ $0.alert }
         } else {
             Text("Can't send mail on this device.")
