@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A62F30702741849E006223B2 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62F306F2741849E006223B2 /* URL+Extension.swift */; };
 		A6507DA5262F19D400B8E3C6 /* MailPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6507DA4262F19D400B8E3C6 /* MailPreview.swift */; };
 		A662311A262E150400B3E84F /* RSWToolsPreviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6623119262E150400B3E84F /* RSWToolsPreviewApp.swift */; };
 		A662311C262E150400B3E84F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A662311B262E150400B3E84F /* ContentView.swift */; };
@@ -18,7 +19,6 @@
 		A662320C262E24E200B3E84F /* RichLinkPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A662320B262E24E200B3E84F /* RichLinkPreviewView.swift */; };
 		A662320F262E296A00B3E84F /* PhotoPickerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A662320E262E296A00B3E84F /* PhotoPickerPreview.swift */; };
 		A6CEC0F926FBAA6F009A766A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CEC0F826FBAA6F009A766A /* SettingsView.swift */; };
-		A6CEC0FB26FBABB8009A766A /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CEC0FA26FBABB8009A766A /* URL+Extension.swift */; };
 		A6CEC10026FBAF8C009A766A /* IconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CEC0FF26FBAF8C009A766A /* IconManager.swift */; };
 		A6CEC10726FBB170009A766A /* PhotoPickerPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CEC10626FBB170009A766A /* PhotoPickerPreviewViewModel.swift */; };
 		A6F859F926FBA0F000BEB944 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A662311D262E150400B3E84F /* Assets.xcassets */; };
@@ -26,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		A6214656263230F3007D56CC /* CopyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyButton.swift; sourceTree = "<group>"; };
+		A62F306F2741849E006223B2 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		A643E2D326FCC754004CAA3D /* RSWTools */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RSWTools; path = ..; sourceTree = "<group>"; };
 		A6507DA4262F19D400B8E3C6 /* MailPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailPreview.swift; sourceTree = "<group>"; };
 		A660B1E426BDCBD200DAB1EA /* NSItemProvider+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+Extension.swift"; sourceTree = "<group>"; };
@@ -177,7 +178,6 @@
 		A662320B262E24E200B3E84F /* RichLinkPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichLinkPreviewView.swift; sourceTree = "<group>"; };
 		A662320E262E296A00B3E84F /* PhotoPickerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerPreview.swift; sourceTree = "<group>"; };
 		A6CEC0F826FBAA6F009A766A /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		A6CEC0FA26FBABB8009A766A /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		A6CEC0FF26FBAF8C009A766A /* IconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconManager.swift; sourceTree = "<group>"; };
 		A6CEC10626FBB170009A766A /* PhotoPickerPreviewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerPreviewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -217,11 +217,11 @@
 			children = (
 				A6CEC0FE26FBAF8C009A766A /* Managers */,
 				A6CEC10126FBB03C009A766A /* Views */,
-				A6CEC10526FBB08B009A766A /* Extensions */,
 				A6623202262E164000B3E84F /* App Navigation */,
 				A662311D262E150400B3E84F /* Assets.xcassets */,
 				A6623122262E150400B3E84F /* Info.plist */,
 				A662311F262E150400B3E84F /* Preview Content */,
+				A62F306F2741849E006223B2 /* URL+Extension.swift */,
 			);
 			path = RSWToolsPreview;
 			sourceTree = "<group>";
@@ -749,14 +749,6 @@
 			path = "View Models";
 			sourceTree = "<group>";
 		};
-		A6CEC10526FBB08B009A766A /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				A6CEC0FA26FBABB8009A766A /* URL+Extension.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -834,7 +826,7 @@
 				A6623200262E163A00B3E84F /* AppSidebarNavigation.swift in Sources */,
 				A662311C262E150400B3E84F /* ContentView.swift in Sources */,
 				A662320C262E24E200B3E84F /* RichLinkPreviewView.swift in Sources */,
-				A6CEC0FB26FBABB8009A766A /* URL+Extension.swift in Sources */,
+				A62F30702741849E006223B2 /* URL+Extension.swift in Sources */,
 				A662311A262E150400B3E84F /* RSWToolsPreviewApp.swift in Sources */,
 				A662320F262E296A00B3E84F /* PhotoPickerPreview.swift in Sources */,
 				A6CEC10726FBB170009A766A /* PhotoPickerPreviewViewModel.swift in Sources */,
@@ -975,7 +967,7 @@
 				DEVELOPMENT_TEAM = SBS8ZBXB9U;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RSWToolsPreview/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1000,7 +992,7 @@
 				DEVELOPMENT_TEAM = SBS8ZBXB9U;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RSWToolsPreview/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

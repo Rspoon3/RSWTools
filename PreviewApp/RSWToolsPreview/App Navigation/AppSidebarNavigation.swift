@@ -7,6 +7,8 @@
 
 import SwiftUI
 import RSWTools
+import SwiftTools
+
 
 struct AppSidebarNavigation: View {
     @State private var showSettings = false

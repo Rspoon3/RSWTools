@@ -29,7 +29,7 @@ public struct SettingsMadeBy: View {
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(Color(.systemGray))
-                Text("Version \(Bundle.appVersion ?? "N/A")(\(Bundle.appBuild ?? "N/A"))")
+                Text("Version \(Bundle.appVersion ?? "N/A") (\(Bundle.appBuild ?? "N/A"))")
                     .foregroundColor(Color(.systemGray2))
                     .font(.caption)
                     .padding(.bottom)

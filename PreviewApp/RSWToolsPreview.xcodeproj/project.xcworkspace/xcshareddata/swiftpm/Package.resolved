@@ -6,8 +6,17 @@
         "repositoryURL": "https://github.com/Rspoon3/SFSymbols.git",
         "state": {
           "branch": null,
-          "revision": "5f5b1d98d686d0882fc4178e3bfcc3e25b6e1516",
-          "version": "1.0.3"
+          "revision": "c29af3cb3137ad5a9a5bd793c0bf7bd1b00c715d",
+          "version": "2.0.0"
+        }
+      },
+      {
+        "package": "SwiftTools",
+        "repositoryURL": "https://github.com/Rspoon3/SwiftTools.git",
+        "state": {
+          "branch": null,
+          "revision": "f8f7128b2f7ad69f42a1482e1ed300878b87df30",
+          "version": "1.0.0"
         }
       }
     ]

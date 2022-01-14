@@ -9,6 +9,8 @@ import SwiftUI
 import RSWTools
 import PhotosUI
 import Combine
+import SwiftTools
+
 
 @available(iOS 15.0, *)
 struct PhotoPickerPreview: View {
@@ -62,7 +64,7 @@ struct PhotoPickerPreview: View {
         }
         .sheet(isPresented: $model.showPhotoPicker){
             PhotoPicker(configuration: model.config,
-                        results: $model.photoPickerResults)
+                        handler: model.photoPickerResults)
         }
     }
 }

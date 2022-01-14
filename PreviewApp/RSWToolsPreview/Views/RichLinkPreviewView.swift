@@ -8,6 +8,7 @@
 import SwiftUI
 import RSWTools
 import LinkPresentation
+import SwiftTools
 
 
 struct RichLinkPreviewView: View {
