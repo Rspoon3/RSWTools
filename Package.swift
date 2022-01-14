@@ -13,7 +13,7 @@ let package = Package(
             targets: ["RSWTools"]),
     ],
     dependencies: [
-        .package(name: "SwiftTools", url: "https://github.com/Rspoon3/SwiftTools.git", branch: "release-1.0.0")
+        .package(name: "SwiftTools", url: "https://github.com/Rspoon3/SwiftTools.git", from: "1.0.0")
     ],
     targets: [
         .target(
