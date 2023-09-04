@@ -9,15 +9,17 @@
 import SwiftUI
 import SwiftTools
 
-
-@available(iOS 13.4, *)
 public struct PermissionRow: View {
     @Environment(\.sizeCategory) var sizeCategory
     @Binding var status: PermissionStatus
     let permission: Permission
     let action: ()->Void
     
-    public init(status: Binding<PermissionStatus>, permission: Permission, _ action: @escaping ()->Void){
+    public init(
+        status: Binding<PermissionStatus>,
+        permission: Permission,
+        _ action: @escaping ()->Void
+    ){
         _status = status
         self.permission = permission
         self.action = action
@@ -38,12 +40,14 @@ public struct PermissionRow: View {
             }
             .padding(.trailing)
             .layoutPriority(2)
-
+            
             if !sizeCategory.isAccessibilityCategory{
                 Spacer()
             }
             
-            Button(action: action, label: {
+            Button {
+                action()
+            }  label: {
                 Text(status.rawValue)
                     .fontWeight(.semibold)
                     .frame(width: sizeCategory.isAccessibilityCategory ? 120 : 70)
@@ -57,21 +61,22 @@ public struct PermissionRow: View {
                     )
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
-            })
-            .buttonStyle(PlainButtonStyle())
+            }
+            .buttonStyle(.plain)
         }
     }
 }
 
-@available(iOS 14, *)
 struct PermissionRow_Previews: PreviewProvider {
     static let statusTypes = [PermissionStatus.denied]
     
     static var previews: some View {
         ForEach(ContentSizeCategory.allCases, id: \.self) { contentSize in
-            ForEach(0..<statusTypes.count, id: \.self){ i in
-                PermissionRow(status: .constant(statusTypes[i]),
-                              permission: .locationWhenInUse){}
+            ForEach(PermissionStatus.allCases, id: \.self){ status in
+                PermissionRow(
+                    status: .constant(status),
+                    permission: .locationWhenInUse
+                ){}
                     .padding()
                     .previewLayout(.sizeThatFits)
                     .previewDisplayName("\(contentSize)")

@@ -8,8 +8,6 @@
 import Foundation
 import PhotosUI
 
-
-@available(iOS 15.0, *)
 class PhotoPickerPreviewViewModel: ObservableObject{
     @Published var showPhotoPicker = false
     @Published var images = [UIImage]()

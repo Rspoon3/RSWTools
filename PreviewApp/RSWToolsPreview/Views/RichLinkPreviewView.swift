@@ -17,8 +17,8 @@ struct RichLinkPreviewView: View {
     
     var body: some View {
         Group{
-            if let link = richLink{
-                RichLinkView(richLink: link)
+            if let richLink {
+                RichLinkView(richLink: richLink)
                     .scaledToFit()
                     .frame(height: 150)
             } else {

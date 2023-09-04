@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "RSWTools",
     platforms: [
-        .iOS(.v13),
+        .iOS(.v15),
     ], products: [
         .library(
             name: "RSWTools",
