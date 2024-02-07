@@ -15,7 +15,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/Rspoon3/SwiftTools.git", branch: "visionOS")
+        .package(url: "https://github.com/Rspoon3/SwiftTools.git", exact: "1.1.0")
     ],
     targets: [
         .target(

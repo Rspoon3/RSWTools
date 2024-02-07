@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Rspoon3/SFSymbols.git",
       "state" : {
-        "revision" : "d3b0fc32d67cadb87f38d3834f51eff89f733e35",
-        "version" : "2.4.0"
+        "revision" : "131fb43a7d756259706abc73186ca45eca6ce21a",
+        "version" : "2.5.0"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Rspoon3/SwiftTools.git",
       "state" : {
-        "branch" : "visionOS",
-        "revision" : "bd3ba4b41d8bc63c7e5bc5cdfe771c866cd5e9e6"
+        "revision" : "108a6f19dba066250a0925f4db90da238633af38",
+        "version" : "1.1.0"
       }
     }
   ],
