@@ -31,6 +31,7 @@ struct ExampleList: View{
     var body: some View{
         List(selection: $selection){
             Section(header: Text("Navigation Views")){
+                #if !os(visionOS)
                 NavigationLink(
                     destination: SafariView(url: website)
                         .edgesIgnoringSafeArea(.all)
@@ -49,6 +50,7 @@ struct ExampleList: View{
                         website = .swiftBySundell
                     }
                 }
+                #endif
                 
                 NavigationLink(
                     destination: RichLinkPreviewView(),

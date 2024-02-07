@@ -84,9 +84,15 @@ public struct SFSymbolPicker: View {
             .navigationBarTitleDisplayMode(.inline)
             .animation(.default, value: searchResults)
             .searchable(text: $searchText)
+#if os(visionOS)
+            .onChange(of: sort) { _, value in
+                currentSymbols = value.symbols
+            }
+#else
             .onChange(of: sort) { value in
                 currentSymbols = value.symbols
             }
+#endif
             .toolbar{
                 ToolbarItem(placement: .primaryAction){
                     filterMenu
