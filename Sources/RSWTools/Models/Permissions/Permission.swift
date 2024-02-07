@@ -10,13 +10,14 @@ import Foundation
 import SFSymbols
 
 
-public struct Permission{
+public struct Permission {
     public let title: String
     public let subTitle: String
     public let symbol: SFSymbol
     
-    @available(iOS 14.0, *)
-    internal static let locationWhenInUse = Permission(title: "Location While In Use",
-                                              subTitle: "Attaches your location to a service request.",
-                                              symbol: SFSymbol.locationViewfinder)
+    internal static let locationWhenInUse = Permission(
+        title: "Location While In Use",
+        subTitle: "Attaches your location to a service request.",
+        symbol: .locationViewfinder
+    )
 }

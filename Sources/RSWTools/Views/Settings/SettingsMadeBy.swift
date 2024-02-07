@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-@available(iOS 14.0, *)
 public struct SettingsMadeBy: View {
     let appID: Int
     @Environment(\.openURL) var openURL
@@ -54,7 +53,6 @@ public struct SettingsMadeBy: View {
     }
 }
 
-@available(iOS 14.0, *)
 struct SettingsMadeBy_Previews: PreviewProvider {
     static var previews: some View {
         SettingsMadeBy(appID: 1496562731)

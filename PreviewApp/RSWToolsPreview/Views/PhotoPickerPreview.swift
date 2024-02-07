@@ -11,8 +11,6 @@ import PhotosUI
 import Combine
 import SwiftTools
 
-
-@available(iOS 15.0, *)
 struct PhotoPickerPreview: View {
     @StateObject var model = PhotoPickerPreviewViewModel()
     
@@ -69,7 +67,6 @@ struct PhotoPickerPreview: View {
     }
 }
 
-@available(iOS 15.0, *)
 struct PhotoPickerPreview_Previews: PreviewProvider {
     static var previews: some View {
         PhotoPickerPreview()

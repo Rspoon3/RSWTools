@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-public enum PermissionStatus: String{
+public enum PermissionStatus: String, CaseIterable {
     case idle    = "Allow"
     case allowed = "Allowed"
     case denied  = "Denied"
     
-    public var backgroundColor: Color{
+    public var backgroundColor: Color { 
         switch self {
         case .allowed:
             return Color.blue

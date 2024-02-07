@@ -1,4 +1,10 @@
 # Change Log
+## Version 3.1.0 (2-7-2024)
+### Additions
+- visionOS support
+
+
+----
 ## Version 3.0.0 (1-14-2022)
 ### Additions
 - Added Safari color extension

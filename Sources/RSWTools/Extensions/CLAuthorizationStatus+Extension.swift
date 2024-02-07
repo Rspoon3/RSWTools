@@ -9,8 +9,8 @@
 import Foundation
 import CoreLocation
 
-public extension CLAuthorizationStatus{
-    var permissionStatus: PermissionStatus{
+public extension CLAuthorizationStatus {
+    var permissionStatus: PermissionStatus {
         switch self {
         case .notDetermined:
             return .idle

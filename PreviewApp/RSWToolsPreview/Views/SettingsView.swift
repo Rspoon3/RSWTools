@@ -11,7 +11,7 @@ import SFSymbols
 
 struct SettingsView: View {
     @Environment(\.openURL) var openURL
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     let displayMode: NavigationBarItem.TitleDisplayMode
     
     var body: some View {
@@ -39,7 +39,7 @@ struct SettingsView: View {
                     .toolbar{
                         ToolbarItem(placement: .cancellationAction) {
                             Button("Done"){
-                                presentationMode.wrappedValue.dismiss()
+                                dismiss()
                             }
                             .opacity(displayMode == .inline ? 1 : 0)
                         }

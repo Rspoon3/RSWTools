@@ -39,6 +39,10 @@ struct AppSidebarNavigation: View {
             #if os(macOS)
             sidebar
                 .frame(minWidth: 100, idealWidth: 150, maxWidth: 200, maxHeight: .infinity)
+            #elseif os(visionOS)
+            sidebar
+            RichLinkPreviewView()
+            
             #else
             sidebar
             

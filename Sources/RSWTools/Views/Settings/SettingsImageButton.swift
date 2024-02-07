@@ -15,10 +15,12 @@ public struct SettingsImageButton: View {
     let size:  CGFloat
     let action: ()->()
     
-    public init(_ text: String,
-                image: Image, color: Color? = nil,
-                size:Int = 30,
-                action: @escaping ()->()){
+    public init(
+        _ text: String,
+        image: Image, color: Color? = nil,
+        size:Int = 30,
+        action: @escaping ()->()
+    ){
         self.text = text
         self.image = image
         self.color = color
@@ -27,17 +29,18 @@ public struct SettingsImageButton: View {
     }
     
     public var body: some View {
-        Button(action: {
+        Button {
             action()
-        }, label: {
+        } label: {
             HStack{
                 Text(text)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 ZStack{
-                    if let color = color{
+                    if let color {
                         color
                     }
+                    
                     image
                         .resizable()
                         .scaledToFit()
@@ -47,16 +50,18 @@ public struct SettingsImageButton: View {
                 .frame(width: 30, height: 30)
                 .cornerRadius(5)
             }
-        }).foregroundColor(.primary)
+        }.foregroundColor(.primary)
     }
 }
 
 struct SettingsImageButton_Previews: PreviewProvider {
     static var previews: some View {
         Form{
-            SettingsImageButton("Privacy Policy",
-                                image: Image(symbol: .handRaisedFill),
-                                color: .accentColor, size: 20){}
+            SettingsImageButton(
+                "Privacy Policy",
+                image: Image(symbol: .handRaisedFill),
+                color: .accentColor, size: 20
+            ){}
         }
     }
 }

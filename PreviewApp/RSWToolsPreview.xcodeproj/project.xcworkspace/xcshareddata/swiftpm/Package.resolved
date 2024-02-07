@@ -1,25 +1,23 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "SFSymbols",
-        "repositoryURL": "https://github.com/Rspoon3/SFSymbols.git",
-        "state": {
-          "branch": null,
-          "revision": "c29af3cb3137ad5a9a5bd793c0bf7bd1b00c715d",
-          "version": "2.0.0"
-        }
-      },
-      {
-        "package": "SwiftTools",
-        "repositoryURL": "https://github.com/Rspoon3/SwiftTools.git",
-        "state": {
-          "branch": null,
-          "revision": "f8f7128b2f7ad69f42a1482e1ed300878b87df30",
-          "version": "1.0.0"
-        }
+  "pins" : [
+    {
+      "identity" : "sfsymbols",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Rspoon3/SFSymbols.git",
+      "state" : {
+        "revision" : "131fb43a7d756259706abc73186ca45eca6ce21a",
+        "version" : "2.5.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "swifttools",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Rspoon3/SwiftTools.git",
+      "state" : {
+        "revision" : "108a6f19dba066250a0925f4db90da238633af38",
+        "version" : "1.1.0"
+      }
+    }
+  ],
+  "version" : 2
 }

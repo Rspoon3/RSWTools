@@ -31,6 +31,7 @@ struct ExampleList: View{
     var body: some View{
         List(selection: $selection){
             Section(header: Text("Navigation Views")){
+                #if !os(visionOS)
                 NavigationLink(
                     destination: SafariView(url: website)
                         .edgesIgnoringSafeArea(.all)
@@ -49,6 +50,7 @@ struct ExampleList: View{
                         website = .swiftBySundell
                     }
                 }
+                #endif
                 
                 NavigationLink(
                     destination: RichLinkPreviewView(),
@@ -58,15 +60,13 @@ struct ExampleList: View{
                     Label("Rich Link", symbol: .link)
                 }.accessibility(label: Text("Rich Link"))
                 
-                if #available(iOS 15.0, *) {
-                    NavigationLink(
-                        destination: PhotoPickerPreview(),
-                        tag: Example.photoPicker,
-                        selection: $selection
-                    ) {
-                        Label("Photo Picker", symbol: .photo)
-                    }.accessibility(label: Text("Photo Picker"))
-                }
+                NavigationLink(
+                    destination: PhotoPickerPreview(),
+                    tag: Example.photoPicker,
+                    selection: $selection
+                ) {
+                    Label("Photo Picker", symbol: .photo)
+                }.accessibility(label: Text("Photo Picker"))
             }
             
             Section(header: Text("Sheet Views")){
